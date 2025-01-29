@@ -1,0 +1,36 @@
+---
+import * as PhosphorIcons from "phosphor-react";
+
+const { items = [], defaultIcon = "Question", classes = {} } = Astro.props;
+
+const {
+  container: containerClass = "grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+  panel: panelClass = "p-6 rounded-lg shadow-lg flex flex-col items-start",
+  title: titleClass = "text-lg font-bold mb-2",
+  description: descriptionClass = "text-gray-600 text-sm",
+  icon: defaultIconClass = "text-primary mb-4",
+} = classes;
+---
+<div class={containerClass}>
+  {items.map(({ title, description, icon }) => {
+    // Determinar el icono a usar
+    const IconComponent = PhosphorIcons[icon] || PhosphorIcons[defaultIcon];
+
+    return (
+      <div class={panelClass}>
+        {/* Ícono */}
+        {IconComponent && (
+          <div class={defaultIconClass}>
+            <IconComponent size={32} weight="bold" />
+          </div>
+        )}
+
+        {/* Título */}
+        <h3 class={titleClass}>{title}</h3>
+
+        {/* Descripción */}
+        {description && <p class={descriptionClass}>{description}</p>}
+      </div>
+    );
+  })}
+</div>

@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { markdownify } from "@/lib/utils/textConverter";
+
+type Props = {
+  service: CollectionEntry<"homepage">["data"]["service"];
+};
+const { service } = Astro.props;
+const { our_service } = service;
+---
+
+<section class="section services">
+  <div class="container">
+    {
+      our_service.map((item, index) => (
+        <div class="gx-5 row mt-12 items-center lg:mt-0">
+          <div class={`lg:col-5 ${index % 2 === 0 ? "order-0" : "order-1"}`}>
+            {item.image && (
+              <div class="relative">
+                <Image
+                  class="w-full object-contain"
+                  alt="service"
+                  width={667}
+                  height={498}
+                  src={item.image}
+                />                
+              </div>
+            )}
+          </div>
+          <div
+            class={`mt-6 lg:col-7 lg:mt-0 ${
+              index % 2 === 0 ? "order-1" : "order-0"
+            }`}
+          >
+            <div class="">
+              <h2 class="lg:text-4xl">{item.title}</h2>
+              <div class="mt-4 flex flex-col gap-2" set:html={markdownify(item.description)} />
+              {item.button && item.button.enable && (
+                <a class="btn btn-white mt-6" href={item.button.link}>
+                  {item.button.label}
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      <div class="mx-auto">
+        <h3 class="text-center text-xl mt-2">Con la confianza de empresas líderes</h3>
+        <Image
+          class="h-full object-contain mx-auto"
+          alt="service"
+          width={667}
+          height={40}
+          src={item.image}
+        />
+      </div>
+      ))
+    }
+  </div>
+</section>

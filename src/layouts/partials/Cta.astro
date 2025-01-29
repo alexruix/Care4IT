@@ -1,0 +1,53 @@
+---
+import config from "@/config/config.json";
+import * as PhosphorIcons from "phosphor-react";
+
+const {
+  call_to_action: { title, description, contacts },
+} = config;
+---
+
+<section class="px-5 py-4 xl:py-[120px] cta">
+  <div class="container">
+    <div class="row justify-center rounded-b-[80px] rounded-t-[20px] px-[30px] pb-[75px] pt-16">
+      <div class="">
+        <div class="row text-center">
+          <div class="">
+            <h2 class="h3">{title}</h2>
+          </div>
+          <div class="mt-4">
+            <p>{description}</p>
+          </div>
+        </div>
+
+        <!-- Contenedor de botones de contacto en una fila -->
+        <div class="contacts gap-8 mt-8 flex flex-wrap justify-center">
+          {contacts.map((contact) => {
+            const IconComponent = PhosphorIcons[contact.icon];
+            return (
+              <div
+                key={contact.link}
+                class="contact-item mb-4 mx-3 flex items-center flex-col sm:flex-row"
+              >
+                <!-- Icono dentro de un círculo blanco -->
+                <div class="icon-container bg-white rounded-full p-6 mr-4">
+                  {IconComponent ? (
+                    <IconComponent size={32} weight="regular" />
+                  ) : (
+                    <span class="text-lg">?</span> <!-- Ícono genérico si no se encuentra -->
+                  )}
+                </div>
+
+                <!-- Título y subtítulo -->
+                <div class="text-left">
+                  <h3 class="text-lg font-semibold">{contact.title}</h3>
+                  <p class="text-sm text-gray-500">{contact.subtitle}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

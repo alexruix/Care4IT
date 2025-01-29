@@ -1,0 +1,39 @@
+{
+  "main": [
+    {
+      "name": "Sobre nosotros",
+      "url": "#nosotros"
+    },
+    {
+      "name": "Servicios",
+      "url": "#servicios"
+    },
+    {
+      "name": "Soluciones",
+      "url": "#soluciones"
+    },
+    {
+      "name": "Contacto",
+      "url": "#contacto"
+    }    
+  ],
+
+  "footer": [
+    {
+      "name": "Sobre nosotros",
+      "url": "#nosotros"
+    },
+    {
+      "name": "Servicios",
+      "url": "#servicios"
+    },
+    {
+      "name": "Soluciones",
+      "url": "#soluciones"
+    },
+    {
+      "name": "Contacto",
+      "url": "#contacto"
+    }
+  ]
+}
