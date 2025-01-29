@@ -7,7 +7,7 @@ const {
 } = config;
 ---
 
-<section class="px-5 py-4 xl:py-[120px] cta">
+<section class="px-5 py-4 xl:py-[120px] cta" id="contacto">
   <div class="container">
     <div class="row justify-center rounded-b-[80px] rounded-t-[20px] px-[30px] pb-[75px] pt-16">
       <div class="">
@@ -20,30 +20,32 @@ const {
           </div>
         </div>
 
-        <!-- Contenedor de botones de contacto en una fila -->
+        <!-- Contenedor de botones de contacto -->
         <div class="contacts gap-8 mt-8 flex flex-wrap justify-center">
           {contacts.map((contact) => {
             const IconComponent = PhosphorIcons[contact.icon];
+
             return (
-              <div
+              <a
                 key={contact.link}
-                class="contact-item mb-4 mx-3 flex items-center flex-col sm:flex-row"
+                href={contact.link}
+                class="flex items-center gap-4  text-primary  px-6 py-6 rounded hover:shadow hover:border-primary border-white transition-all duration-300"
               >
                 <!-- Icono dentro de un círculo blanco -->
-                <div class="icon-container bg-white rounded-full p-6 mr-4">
+                <div class="bg-secondary/45 rounded-full p-4 flex items-center justify-center">
                   {IconComponent ? (
-                    <IconComponent size={32} weight="regular" />
+                    <IconComponent size={24} weight="light" class="" />
                   ) : (
-                    <span class="text-lg">?</span> <!-- Ícono genérico si no se encuentra -->
+                    <span class="text-lg text-primary">?</span> <!-- Ícono genérico -->
                   )}
                 </div>
 
                 <!-- Título y subtítulo -->
                 <div class="text-left">
                   <h3 class="text-lg font-semibold">{contact.title}</h3>
-                  <p class="text-sm text-gray-500">{contact.subtitle}</p>
+                  <p class="text-sm text-black">{contact.subtitle}</p>
                 </div>
-              </div>
+              </a>
             );
           })}
         </div>

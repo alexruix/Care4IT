@@ -4,12 +4,14 @@ import CardExtension from "@/layouts/function-components/CardExtension";
 const { card } = Astro.props;
 ---
 
-<div class="container mb-16">
-  <div class="my-8">
-    <!-- <h2 set:html={markdownify(card.title)} /> -->
-  </div>
+<section class="infra py-16">
 
-  {card.list && card.list.length > 0 ? (
+  <div class="container ">
+    <div class="">
+      <!-- <h2 set:html={markdownify(card.title)} /> -->
+    </div>
+    
+    {card.list && card.list.length > 0 ? (
     <div class="flex flex-col space-y-8">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {card.list.slice(0, 3).map((item, index) => (
@@ -25,3 +27,4 @@ const { card } = Astro.props;
     <p>No hay datos para mostrar.</p>
   )}
 </div>
+</section>

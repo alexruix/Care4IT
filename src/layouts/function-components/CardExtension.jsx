@@ -9,7 +9,7 @@ const CardExtension = ({ title, description }) => {
   };
 
   return (
-    <div className="flex flex-col gap-2 bg-white p-6 shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300">
+    <div className="flex flex-col gap-2 p-6 rounded-lg">
       <h3 className="text-2xl font-semibold text-gray-800">{title}</h3>
 
       {/* Mostrar descripción truncada o completa según el estado */}

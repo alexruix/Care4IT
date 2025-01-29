@@ -4,8 +4,8 @@
     "base_url": "https://pinwheel-astro.vercel.app",
     "base_path": "/",
     "trailing_slash": false,
-    "favicon": "/images/favicon.png",
-    "logo": "/images/logo_.jpg",
+    "favicon": "/images/favicon.jpg",
+    "logo": "/images/logo_.png",
     "logo_width": "147",
     "logo_height": "31",
     "logo_text": "Care4iT"
@@ -41,14 +41,14 @@
   "params": {
     "footer_description": "Lorem ipsum dolor sit sed dmi amet, consectetur adipiscing. Cdo tellus, sed condimentum volutpat.",
     "email": "info@andromeda.io",
-    "location": "2118 Thornridge Cir. Syracuse, Connecticut 35624",
-    "phone": "+704-555-0127",
+    "location": "La Plata, Buenos Aires",
+    "phone": "+542214945653",
     "contact_form_action": "#",
     "copyright": "Copyright © 2025"
   },
   "metadata": {
-    "meta_author": "Themefisher",
+    "meta_author": "Care4iT",
     "meta_image": "/images/og-image.png",
-    "meta_description": "pinwheel astro"
+    "meta_description": "Care4iT Soluciones It"
   }
 }
