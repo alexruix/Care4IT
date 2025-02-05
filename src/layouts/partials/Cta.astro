@@ -1,15 +1,17 @@
 ---
 import config from "@/config/config.json";
 import * as PhosphorIcons from "phosphor-react";
+import { Image } from "astro:assets";
 
 const {
   call_to_action: { title, description, contacts },
 } = config;
+const whatsAppLink = `${config.params.whatsAppLink}?text=${config.params.whatsAppMessage}`;
 ---
 
 <section class="px-5 py-4 xl:py-[120px] cta" id="contacto">
   <div class="container">
-    <div class="row justify-center rounded-b-[80px] rounded-t-[20px] px-[30px] pb-[75px] pt-16">
+    <div class="row justify-center rounded-b-[80px] rounded-t-[20px] px-[30px] pb-[25px] pt-16">
       <div class="">
         <div class="row text-center">
           <div class="">
@@ -23,12 +25,20 @@ const {
         <!-- Contenedor de botones de contacto -->
         <div class="contacts gap-8 mt-8 flex flex-wrap justify-center">
           {contacts.map((contact) => {
+            // Verificar si el contacto es de WhatsApp
+            if (contact.title === "WhatsApp") {
+              contact.link = whatsAppLink; // Actualiza el link de WhatsApp
+            }
+
             const IconComponent = PhosphorIcons[contact.icon];
 
             return (
               <a
                 key={contact.link}
                 href={contact.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Ir a ${contact.title}`}
                 class="flex items-center gap-4  text-primary border border-gray-200  px-6 py-6 rounded hover:shadow hover:border-primary transition-all duration-300"
               >
                 <!-- Icono dentro de un círculo blanco -->
@@ -50,6 +60,7 @@ const {
           })}
         </div>
       </div>
+      
     </div>
   </div>
 </section>

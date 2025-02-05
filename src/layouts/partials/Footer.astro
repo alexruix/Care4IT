@@ -6,8 +6,11 @@ import { markdownify } from "@/lib/utils/textConverter";
 import { EnvelopeSimple, InstagramLogo, WhatsappLogo } from "phosphor-react"; // Importar ícono de Instagram
 
 const { footer } = menu;
-const { copyright, location, email, footer_description, instagramLink, whatsAppLink } = config.params;
+const { copyright, email, footer_description, instagramLink} = config.params;
 const currentYear = new Date().getFullYear(); // Año dinámico
+const whatsAppLink = `${config.params.whatsAppLink}?text=${config.params.whatsAppMessage}`;
+const whatsAppLink2 = `${config.params.whatsAppLink2}?text=${config.params.whatsAppMessage}`;
+
 ---
 
 <footer class="footer bg-[#F5F5F5] border-t-2">
@@ -46,7 +49,7 @@ const currentYear = new Date().getFullYear(); // Año dinámico
           <span>Contacto</span>
         </h6>
         <ul class="mt-4 space-y-2">
-          <li>{location}</li>
+          <!-- <li>{location}</li> -->
           <li>
             <a
               href={`mailto:${email}`}
@@ -71,6 +74,17 @@ const currentYear = new Date().getFullYear(); // Año dinámico
           <li>
             <a
               href={whatsAppLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 hover:text-primary hover:underline focus:ring-2 focus:ring-primary focus:outline-none"
+              aria-label="Escribenos por WhatsApp"
+            >
+              <WhatsappLogo size={20} weight="regular" /> WhatsApp
+            </a>
+          </li>
+          <li>
+            <a
+              href={whatsAppLink2}
               target="_blank"
               rel="noopener noreferrer"
               class="flex items-center gap-2 hover:text-primary hover:underline focus:ring-2 focus:ring-primary focus:outline-none"

@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Care4iT",
-    "base_url": "https://pinwheel-astro.vercel.app",
+    "base_url": "https://care4it.com.ar",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.jpg",
@@ -45,6 +45,7 @@
     "contact_form_action": "#",
     "instagramLink": "https://www.instagram.com/care4it_cb/",
     "whatsAppLink": "https://wa.me/5492214209069", 
+    "whatsAppLink2": "https://wa.me/5492214945653",
     "whatsAppMessage": "Hola,%20me%20interesa%20obtener%20información%20sobre",
     "copyright": "Copyright © 2025"
   },

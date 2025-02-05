@@ -73,6 +73,7 @@ const homepageCollection = defineCollection({
 
     infra_cards: z.object({
       title: z.string(),
+      image: z.string().optional(),
       list: z.array(
         z.object({
           image: z.string().optional(), // Opcional si no todas las infraestructuras tienen imagen

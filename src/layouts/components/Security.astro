@@ -1,6 +1,8 @@
 ---
 import { markdownify } from "@/lib/utils/textConverter";
 import HomapageFeature from "@/layouts/function-components/HomapageFeature";
+import { Image } from "astro:assets";
+
 const { key_features } = Astro.props;
 const { title, description, feature_list } = key_features;
 ---
@@ -16,5 +18,14 @@ const { title, description, feature_list } = key_features;
       </div> -->
     </div>
     <HomapageFeature feature_list={feature_list} client:load />
+    <div class="container">      
+      <Image
+      class="w-full object-contain mt-8"
+      alt="banner"
+      src= "/images/banner.jpg"
+      width={603}
+      height={396}
+      />
+    </div>
   </div>
 </section>

@@ -2,6 +2,8 @@
 import CardExtension from "@/layouts/function-components/CardExtension";
 import { AiFillCheckCircle } from "react-icons/ai";
 import * as PhosphorIcons from "phosphor-react";
+import { Image } from "astro:assets";
+
 
 const { card, benefits } = Astro.props;
 ---
@@ -11,6 +13,7 @@ const { card, benefits } = Astro.props;
     <!-- Título de Infraestructura -->
     <div class="text-center mb-10">
       <!-- <h2 class="h3">{card.title}</h2> -->
+      
     </div>
 
     {card.list && card.list.length > 0 ? (
@@ -75,6 +78,7 @@ const { card, benefits } = Astro.props;
     </div>
   </div>
 </div>
+
         </div>
         )}
       </div>
@@ -82,5 +86,5 @@ const { card, benefits } = Astro.props;
       <p class="">No hay datos para mostrar.</p>
     )}
   </div>
-</section>
 
+</section>

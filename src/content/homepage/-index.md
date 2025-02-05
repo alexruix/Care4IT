@@ -66,6 +66,7 @@ testimonial:
     
 infra_cards:
   title: "Infraestructura"
+  image: "/images/computadora.jpg"
   list:
     - title: "Infraestructura física"
       description: "Instalación de cableado estructurado e implementación de redes WiFI. Estudio previo de la topología de red orientando la implementación a la optimización de los recursos y manteniendo los estándares de normalización. Instalación de centrales telefónicas VOIP y soluciones de telefonía IP."
