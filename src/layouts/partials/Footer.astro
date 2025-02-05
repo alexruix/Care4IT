@@ -1,65 +1,91 @@
 ---
 import Logo from "@/components/Logo.astro";
-import Social from "@/components/Social.astro";
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
-import social from "@/config/social.json";
 import { markdownify } from "@/lib/utils/textConverter";
+import { EnvelopeSimple, InstagramLogo, WhatsappLogo } from "phosphor-react"; // Importar ícono de Instagram
+
 const { footer } = menu;
-const { copyright, location, email, phone, footer_description } = config.params;
+const { copyright, location, email, footer_description, instagramLink, whatsAppLink } = config.params;
+const currentYear = new Date().getFullYear(); // Año dinámico
 ---
 
-<footer class="footer bg-[#F1F1F1]">
-  <div class="container">
-    <div class="gx-5 row pb-10 pt-[52px]">
-      <div class="col-12 mt-12 md:col-6 lg:col-3">
+<footer class="footer bg-[#F5F5F5] border-t-2">
+  <div class="container py-10">
+    <div class="grid grid-cols-1 gap-10 text-gray-600 sm:grid-cols-2 lg:grid-cols-3">
+      
+      <!-- Logo y descripción -->
+      <div>
         <Logo />
-        <p class="mt-6">
-          <!-- {footer_description} -->
-        </p>
+        <p class="mt-4 text-sm">{footer_description}</p>
       </div>
-      <!-- <div class="col-12 mt-12 md:col-6 lg:col-6">
-        <h6>Socials</h6>
 
-        <Social source={social} className="social-icons mt-4 lg:mt-6" />
-      </div> -->
-      <div class="col-12 mt-12 md:col-6 lg:col-6">
-        <h6>Menu</h6>
-        <ul>
-          {
-            footer.map((item, i) => (
-              <li class={footer.length - 1 === i ? "mb-0" : "mb-4"}>
-                <a class="hover:text-primary hover:underline " href={item.url}>
-                  {item.name}
-                </a>
-              </li>
-            ))
-          }
+      <!-- Menú -->
+      <div>
+        <h6 class="text-lg font-semibold text-black">
+          <span>Menú</span>
+        </h6>
+        <ul class="mt-4 space-y-2">
+          {footer.map((item, i) => (
+            <li>
+              <a
+                href={item.url}
+                class="hover:text-primary hover:underline focus:ring-2 focus:ring-primary focus:outline-none"
+                aria-label={`Ir a ${item.name}`}
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
-      <!-- <div class="col-12 mt-12 md:col-6 lg:col-3">
-        <h6>Location & Contact</h6>
-        <ul>
-          <li class="mb-2">{location}</li>
-          <li class="mb-2">
-            <a class="mb-2 hover:text-primary" href={`mailto:${email}`}
-              >{email}</a
+
+      <!-- Contacto (con Instagram en lugar de teléfono) -->
+      <div>
+        <h6 class="text-lg font-semibold text-black">
+          <span>Contacto</span>
+        </h6>
+        <ul class="mt-4 space-y-2">
+          <li>{location}</li>
+          <li>
+            <a
+              href={`mailto:${email}`}
+              class="flex items-center gap-2 hover:text-primary hover:underline focus:ring-2 focus:ring-primary focus:outline-none"
+              aria-label="Enviar un correo"
             >
+            <EnvelopeSimple size={20} weight="regular" /> Email
+            <!-- {email} -->
+            </a>
           </li>
           <li>
-            <a class="hover:text-primary hover:underline" href={`tel:${phone}`}
-              >{phone}</a
+            <a
+              href={instagramLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 hover:text-primary hover:underline focus:ring-2 focus:ring-primary focus:outline-none"
+              aria-label="Visitar nuestro Instagram"
             >
+              <InstagramLogo size={20} weight="regular" /> Instagram
+            </a>
+          </li>
+          <li>
+            <a
+              href={whatsAppLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 hover:text-primary hover:underline focus:ring-2 focus:ring-primary focus:outline-none"
+              aria-label="Escribenos por WhatsApp"
+            >
+              <WhatsappLogo size={20} weight="regular" /> WhatsApp
+            </a>
           </li>
         </ul>
-      </div> -->
+      </div>
     </div>
   </div>
-  <div class="container max-w-[1440px]">
-    <div
-      class="footer-copyright mx-auto border-t border-border pb-10 pt-7 text-center"
-    >
-      <p class="content text-text" set:html={markdownify(copyright)} />
-    </div>
+
+  <!-- Copyright con año dinámico -->
+  <div class="border-t border-border py-6 text-center text-gray-500 text-sm">
+    <p>{copyright.replace("2025", currentYear.toString())}</p>
   </div>
 </footer>

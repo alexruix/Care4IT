@@ -37,6 +37,7 @@ const homepageCollection = defineCollection({
           title: z.string(),
           description: z.string().optional(),
           image: z.string().optional(),
+          imageDes: z.string(),
           list: z.array(z.string()).optional(),
           video: z
             .object({
@@ -69,14 +70,27 @@ const homepageCollection = defineCollection({
         )
         .optional(),
     }),
-    
+
     infra_cards: z.object({
       title: z.string(),
       list: z.array(
         z.object({
-          image: z.string().optional(),
+          image: z.string().optional(), // Opcional si no todas las infraestructuras tienen imagen
           title: z.string(),
           description: z.string(),
+          listtitle: z.string().optional(), // Hacerlo opcional en caso de que no siempre se use
+          listItem: z.array(z.string()).optional(), // Lista opcional con elementos string
+        })
+      ),
+    }),    
+    benefits: z.object({
+      title: z.string(),
+      description: z.string(),
+      list: z.array(
+        z.object({
+          image: z.string().optional(), // Mantiene compatibilidad si no hay imagen
+          title: z.string(),
+          icon: z.string(),
         })
       ),
     }),    

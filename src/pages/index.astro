@@ -6,6 +6,7 @@ import AboutUs from "@/layouts/components/AboutUs.astro";
 import Services from "@/layouts/components/Services.astro";
 import InfraCard from "@/layouts/components/Infra.astro";
 import Cta from "@/layouts/partials/Cta.astro";
+import Benefits from "@/layouts/components/Benefits.astro";
 import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
 
@@ -13,7 +14,7 @@ const homepage = (await getEntry(
   "homepage",
   "-index"
 )) as CollectionEntry<"homepage">;
-const { banner, key_features, service, testimonial, infra_cards } = homepage.data;
+const { banner, key_features, service, testimonial, infra_cards, benefits } = homepage.data;
 ---
 
 <Base>
@@ -21,6 +22,7 @@ const { banner, key_features, service, testimonial, infra_cards } = homepage.dat
   <AboutUs service={service} />
   <Services testimonial={testimonial} />
   <Security key_features={key_features} />
-  <InfraCard card={infra_cards} />
+  <InfraCard card={infra_cards} benefits={benefits}/>
+  <!-- <Benefits benefits={benefits}/>  -->
   <Cta />
 </Base>

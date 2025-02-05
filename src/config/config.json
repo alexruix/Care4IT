@@ -28,27 +28,29 @@
         "icon": "WhatsappLogo",
         "title": "WhatsApp",
         "subtitle": "+54 (221) 420-9069",
-        "link": "https://wa.me/5492214209069"
+        "link": "{{whatsAppLink}}"
       },
       {
-        "icon": "WhatsappLogo",
-        "title": "WhatsApp",
-        "subtitle": "+54 (221) 494-5653",
-        "link": "https://wa.me/5492214945653"
+        "icon": "InstagramLogo",
+        "title": "Instagram",
+        "subtitle": "@care4it_cb",
+        "link": "https://www.instagram.com/care4it_cb/"
       }
     ]
   },
   "params": {
-    "footer_description": "Lorem ipsum dolor sit sed dmi amet, consectetur adipiscing. Cdo tellus, sed condimentum volutpat.",
-    "email": "info@andromeda.io",
+    "footer_description": "Especialistas en consultoria, networking y servicios IT para empresas.",
+    "email": "info@care4it.com.ar",
     "location": "La Plata, Buenos Aires",
-    "phone": "+542214945653",
     "contact_form_action": "#",
+    "instagramLink": "https://www.instagram.com/care4it_cb/",
+    "whatsAppLink": "https://wa.me/5492214209069", 
+    "whatsAppMessage": "Hola,%20me%20interesa%20obtener%20información%20sobre",
     "copyright": "Copyright © 2025"
   },
   "metadata": {
     "meta_author": "Care4iT",
     "meta_image": "/images/og-image.png",
-    "meta_description": "Care4iT Soluciones It"
+    "meta_description": "Care4iT ofrece soluciones IT, infraestructura fisica, infraestructura informatica y seguridad para empresas en Argentina. Optimiza tu negocio con tecnología avanzada"
   }
 }

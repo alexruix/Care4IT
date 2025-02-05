@@ -1,21 +1,14 @@
 ---
 import Logo from "@/components/Logo.astro";
 import menu from "@/config/menu.json";
-
-export interface ChildNavigationLink {
-  name: string;
-  url: string;
-}
-
-export interface NavigationLink {
-  name: string;
-  url: string;
-  hasChildren?: boolean;
-  children?: ChildNavigationLink[];
-}
-
-const { main }: { main: NavigationLink[] } = menu;
+import config from "@/config/config.json";
+import { WhatsappLogo } from "phosphor-react";
 const { pathname } = Astro.url;
+const whatsAppLink = `${config.params.whatsAppLink}?text=${config.params.whatsAppMessage}`;
+
+// Desestructuración de la configuración
+const { main }: { main: NavigationLink[] } = menu;
+// const { whatsAppLink } = config.params;
 ---
 
 <header class="header">
@@ -24,6 +17,7 @@ const { pathname } = Astro.url;
     <div class="order-0">
       <Logo />
     </div>
+    
     <!-- navbar toggler -->
     <input id="nav-toggle" type="checkbox" class="hidden" />
     <label
@@ -45,78 +39,53 @@ const { pathname } = Astro.url;
         <title>Cerrar menu</title>
         <polygon
           points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
-          transform="rotate(45 10 10)"></polygon>
+          transform="rotate(45 10 10)"
+        ></polygon>
       </svg>
     </label>
     <!-- /navbar toggler -->
 
+    <!-- Menú de navegación -->
     <ul
       id="nav-menu"
       class="navbar-nav order-3 hidden w-full lg:order-1 lg:flex lg:w-auto lg:space-x-2"
     >
       {
-        main.map((menu) => (
-          <>
-            {menu.hasChildren ? (
-              <li class="nav-item nav-dropdown group relative cursor-pointer  dropdown-button">
-                <span
-                  class={`nav-link inline-flex items-center ${
-                    menu.children?.map(({ url }) => url).includes(pathname) ||
-                    menu.children
-                      ?.map(({ url }) => `${url}/`)
-                      .includes(pathname)
-                      ? "active"
-                      : ""
-                  }`}
-                >
-                  {menu.name}
-                  <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </span>
-                <ul
-                  id="dropdown"
-                  class="nav-dropdown-list mx-auto hidden duration-300 lg:invisible lg:absolute lg:block lg:h-auto lg:w-[13.5rem] lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100"
-                >
-                  {menu.children?.map((child) => (
-                    <li class="nav-dropdown-item">
-                      <a
-                        href={child.url}
-                        class={`nav-dropdown-link block ${
-                          (pathname === `${child.url}/` ||
-                            pathname === child.url) &&
-                          "text-primary"
-                        }`}
-                      >
-                        {child.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ) : (
-              <li class="nav-item">
-                <a
-                  href={menu.url}
-                  class={`nav-link inline-block lg:block ${
-                    (pathname === `${menu.url}/` || pathname === menu.url) &&
-                    "active"
-                  }`}
-                >
-                  {menu.name}
-                </a>
-              </li>
-            )}
-          </>
+        main.map((menuItem) => (
+          <li class={`nav-item ${menuItem.hasChildren ? "nav-dropdown group" : ""} relative`}>
+            <a
+              href={menuItem.url}
+              class={`nav-link inline-block lg:block ${pathname === menuItem.url || pathname === `${menuItem.url}/` ? "active" : ""}`}
+            >
+              {menuItem.name}
+              {menuItem.hasChildren && (
+                <svg class="h-4 w-4 fill-current ml-2" viewBox="0 0 20 20">
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+              )}
+            </a>
+          </li>
         ))
       }
     </ul>
+
+    <!-- WhatsApp Link -->
     <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex">
+      <a
+        href={whatsAppLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-green-500 text-white flex gap-2 py-2 px-4 rounded-lg transition-all duration-300 hover:bg-primary-dark"
+      >
+        <WhatsappLogo size={18} className="text-white" />
+        <span class="text-sm">Hablemos</span>
+      </a>
     </div>
   </nav>
 </header>
 
 <script is:inline>
+  // Manejo de la apertura/cierre del menú desplegable
   document.querySelectorAll(".dropdown-button").forEach((button) => {
     button.addEventListener("click", (e) => {
       const dropdown = e.target.nextElementSibling;
@@ -126,7 +95,7 @@ const { pathname } = Astro.url;
     });
   });
 
-  //sticky header
+  // Header sticky on scroll
   document.addEventListener("astro:page-load", () => {
     const header = document.querySelector(".header");
     window.addEventListener("scroll", () => {

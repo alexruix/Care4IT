@@ -15,23 +15,11 @@ const { our_service } = service;
     {
       our_service.map((item, index) => (
         <div class="gx-5 row mt-12 items-center lg:mt-0">
-          <div class={`lg:col-5 ${index % 2 === 0 ? "order-0" : "order-1"}`}>
-            {item.image && (
-              <div class="relative">
-                <Image
-                  class="w-full object-contain"
-                  alt="service"
-                  width={667}
-                  height={498}
-                  src={item.image}
-                />                
-              </div>
-            )}
+          <div class={}>
+            
           </div>
           <div
-            class={`mt-6 lg:col-7 lg:mt-0 ${
-              index % 2 === 0 ? "order-1" : "order-0"
-            }`}
+            class={}
           >
             <div class="">
               <h2 class="lg:text-4xl">{item.title}</h2>
@@ -44,15 +32,16 @@ const { our_service } = service;
             </div>
           </div>
         </div>
-      <div class="mx-auto">
-        <h3 class="text-center text-xl mt-2">Con la confianza de empresas líderes</h3>
+      <div class="mx-auto mt-10">
+        <h3 class="text-center text-xl my-2">Con la confianza de empresas líderes</h3>
         <Image
           class="h-full object-contain mx-auto"
           alt="service"
-          width={667}
+          width={700}
           height={40}
           src={item.image}
         />
+        <p class="mt-2 text-center text-sm mx-auto">{item.imageDes}</p>
       </div>
       ))
     }
