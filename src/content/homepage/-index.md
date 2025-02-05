@@ -2,7 +2,7 @@
 banner:
   title: "Servicios IT que transforman tu empresa"
   content: "Más de 15 años brindando soluciones tecnológicas, infraestructura y seguridad para que tu empresa sea más eficiente, segura y competitiva."
-  image: /images/computadora.jpg
+  image: /images/intro-thumbnail.png
   button:
     enable: true
     label: Contáctanos ahora
@@ -66,7 +66,7 @@ testimonial:
     
 infra_cards:
   title: "Infraestructura"
-  image: "/images/computadora.jpg"
+  image: "/images/intro-thumbnail.png"
   list:
     - title: "Infraestructura física"
       description: "Instalación de cableado estructurado e implementación de redes WiFI. Estudio previo de la topología de red orientando la implementación a la optimización de los recursos y manteniendo los estándares de normalización. Instalación de centrales telefónicas VOIP y soluciones de telefonía IP."
