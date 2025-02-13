@@ -3,30 +3,24 @@ import * as PhosphorIcons from "@phosphor-icons/react";
 
 const HomapageFeature = ({ feature_list }) => {
   return (
-    <div className="key-feature-grid mt-10 grid grid-cols-2 gap-7 md:grid-cols-3">
+    <div className="key-feature-grid mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {feature_list.map((item, i) => {
-        const IconComponent = PhosphorIcons[humanize(item.icon)];
-
-        // Verifica si el ícono existe
-        if (!IconComponent) {
-          console.warn(`Ícono no encontrado para: ${humanize(item.icon)}`);
-          return null; // O podrías renderizar un ícono genérico aquí
-        }
+        const IconComponent = PhosphorIcons[humanize(item.icon)] || PhosphorIcons.Question;
 
         return (
           <div
             key={i}
-            className="flex flex-col gap-0 items-start p-5 space-y-4"
+            className="flex flex-col sm:items-start bg-white p-6 rounded-lg"
           >
-            {/* Ícono */}
-            <span className="icon mb-2">
+            {/* Ícono con fondo */}
+            <div className="text-primary rounded-full p-3 flex mb-4">
               <IconComponent size={32} weight="regular" />
-            </span>
+            </div>
 
             {/* Contenedor del Título y Contenido */}
-            <div className="flex flex-col items-start">
-              <h3 className="h4 text-xl lg:text-2xl">{item.title}</h3>
-              <p className="">{item.content}</p>
+            <div className="sm:text-left">
+              <h3 className="text-lg md:text-xl font-semibold">{item.title}</h3>
+              <p className="mt-2 text-sm md:text-base">{item.content}</p>
             </div>
           </div>
         );

@@ -14,23 +14,21 @@ const whatsAppLink2 = `${config.params.whatsAppLink2}?text=${config.params.whats
 ---
 
 <footer class="footer bg-[#F5F5F5] border-t-2">
-  <div class="container py-10">
-    <div class="grid grid-cols-1 gap-10 text-gray-600 sm:grid-cols-2 lg:grid-cols-3">
+  <div class="container px-4 py-10">
+    <div class="grid grid-cols-2 gap-10 text-gray-600 md:grid-cols-3 lg:grid-cols-3">
       
-      <!-- Logo y descripción -->
-      <div>
+      <!-- Logo y descripción ocupan toda la fila en móviles -->
+      <div class="col-span-full sm:col-span-2 md:col-span-1 lg:col-span-1 text-center sm:text-left">
         <Logo />
         <p class="mt-4 text-sm">{footer_description}</p>
       </div>
 
       <!-- Menú -->
       <div>
-        <h6 class="text-lg font-semibold text-black">
-          <span>Menú</span>
-        </h6>
+        <h6 class="text-lg font-semibold text-black">Menú</h6>
         <ul class="mt-4 space-y-2">
           {footer.map((item, i) => (
-            <li>
+            <li key={i}>
               <a
                 href={item.url}
                 class="hover:text-primary hover:underline focus:ring-2 focus:ring-primary focus:outline-none"
@@ -45,19 +43,15 @@ const whatsAppLink2 = `${config.params.whatsAppLink2}?text=${config.params.whats
 
       <!-- Contacto (con Instagram en lugar de teléfono) -->
       <div>
-        <h6 class="text-lg font-semibold text-black">
-          <span>Contacto</span>
-        </h6>
+        <h6 class="text-lg font-semibold text-black">Contacto</h6>
         <ul class="mt-4 space-y-2">
-          <!-- <li>{location}</li> -->
           <li>
             <a
               href={`mailto:${email}`}
               class="flex items-center gap-2 hover:text-primary hover:underline focus:ring-2 focus:ring-primary focus:outline-none"
               aria-label="Enviar un correo"
             >
-            <EnvelopeSimple size={20} weight="regular" /> Email
-            <!-- {email} -->
+              <EnvelopeSimple size={20} weight="regular" /> Email
             </a>
           </li>
           <li>
@@ -103,3 +97,4 @@ const whatsAppLink2 = `${config.params.whatsAppLink2}?text=${config.params.whats
     <p>{copyright.replace("2025", currentYear.toString())}</p>
   </div>
 </footer>
+

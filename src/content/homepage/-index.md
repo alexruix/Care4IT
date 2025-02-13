@@ -2,7 +2,7 @@
 banner:
   title: "Servicios IT que transforman tu empresa"
   content: "Más de 15 años brindando soluciones tecnológicas, infraestructura y seguridad para que tu empresa sea más eficiente, segura y competitiva."
-  image: /images/intro-thumbnail.png
+  image: /images/datacenter.jpg
   button:
     enable: true
     label: Contáctanos ahora

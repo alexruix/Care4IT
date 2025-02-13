@@ -2,38 +2,38 @@
   "main": [
     {
       "name": "Sobre nosotros",
-      "url": "#nosotros"
+      "url": "/#nosotros"
     },
     {
       "name": "Servicios",
-      "url": "#servicios"
+      "url": "/#servicios"
     },
     {
       "name": "Soluciones",
-      "url": "#soluciones"
+      "url": "/#soluciones"
     },
     {
       "name": "Contacto",
-      "url": "#contacto"
+      "url": "/#contacto"
     }    
   ],
 
   "footer": [
     {
       "name": "Sobre nosotros",
-      "url": "#nosotros"
+      "url": "/#nosotros"
     },
     {
       "name": "Servicios",
-      "url": "#servicios"
+      "url": "/#servicios"
     },
     {
       "name": "Soluciones",
-      "url": "#soluciones"
+      "url": "/#soluciones"
     },
     {
       "name": "Contacto",
-      "url": "#contacto"
+      "url": "/#contacto"
     }
   ]
 }

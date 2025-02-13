@@ -9,9 +9,9 @@ const {
 const whatsAppLink = `${config.params.whatsAppLink}?text=${config.params.whatsAppMessage}`;
 ---
 
-<section class="px-5 py-4 xl:py-[120px] cta" id="contacto">
+<section class="px-5 py-[64px] xl:py-[120px] cta" id="contacto">
   <div class="container">
-    <div class="row justify-center rounded-b-[80px] rounded-t-[20px] px-[30px] pb-[25px] pt-16">
+    <div class="row justify-center rounded-b-[80px] rounded-t-[20px] px-6 lg:px-[30px] pb-[25px] pt-1">
       <div class="">
         <div class="row text-center">
           <div class="">
@@ -39,7 +39,7 @@ const whatsAppLink = `${config.params.whatsAppLink}?text=${config.params.whatsAp
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Ir a ${contact.title}`}
-                class="flex items-center gap-4  text-primary border border-gray-200  px-6 py-6 rounded hover:shadow hover:border-primary transition-all duration-300"
+                class="flex items-center gap-4  min-w-72 text-primary border border-gray-200  px-6 py-6 rounded hover:shadow hover:border-primary transition-all duration-300"
               >
                 <!-- Icono dentro de un círculo blanco -->
                 <div class="bg-secondary/45 rounded-full p-4 flex items-center justify-center">
