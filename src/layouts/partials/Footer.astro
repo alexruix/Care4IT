@@ -2,99 +2,126 @@
 import Logo from "@/components/Logo.astro";
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
-import { markdownify } from "@/lib/utils/textConverter";
-import { EnvelopeSimple, InstagramLogo, WhatsappLogo } from "phosphor-react"; // Importar ícono de Instagram
+import { EnvelopeSimple, InstagramLogo, WhatsappLogo } from "phosphor-react";
 
 const { footer } = menu;
-const { copyright, email, footer_description, instagramLink} = config.params;
-const currentYear = new Date().getFullYear(); // Año dinámico
+const { email, footer_description, instagramLink } =
+  config.params;
+  const {author} = config;
+
+const currentYear = new Date().getFullYear();
 const whatsAppLink = `${config.params.whatsAppLink}?text=${config.params.whatsAppMessage}`;
 const whatsAppLink2 = `${config.params.whatsAppLink2}?text=${config.params.whatsAppMessage}`;
 
+
+const chipBase =
+  "inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-3 py-2 text-sm transition hover:border-primary hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70";
+
+const linkBase =
+  "flex items-center gap-2 text-sm hover:text-primary hover:underline rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70";
+
+const sectionTitle = "text-xs font-semibold uppercase tracking-wide";
+
+const contactLinks = [
+  { href: `mailto:${email}`, icon: EnvelopeSimple, label: "Email" },
+  { href: instagramLink, icon: InstagramLogo, label: "Instagram", ext: true },
+  { href: whatsAppLink, icon: WhatsappLogo, label: "WhatsApp", ext: true },
+  {
+    href: whatsAppLink2,
+    icon: WhatsappLogo,
+    label: "WhatsApp (alt.)",
+    ext: true,
+  },
+];
 ---
 
-<footer class="footer bg-[#F5F5F5] border-t-2">
-  <div class="container px-4 py-10">
-    <div class="grid grid-cols-2 gap-10 text-gray-600 md:grid-cols-3 lg:grid-cols-3">
+<footer class="bg-[#F5F5F5]">
+  <div class="container px-4 py-12">
+    <div class="grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-4">
       
-      <!-- Logo y descripción ocupan toda la fila en móviles -->
-      <div class="col-span-full sm:col-span-2 md:col-span-1 lg:col-span-1 text-center sm:text-left">
+      <div class="md:col-span-3 lg:col-span-2">
         <Logo />
-        <p class="mt-4 text-sm">{footer_description}</p>
+        <p class="mt-4 text-sm text-gray-700 max-w-prose">
+          {footer_description}
+        </p>
+
+        <!-- Chips -->
+        <!-- <div class="mt-6 flex flex-wrap gap-3">
+          <a href={`mailto:${email}`} class={chipBase} aria-label="Enviar un correo">
+            <EnvelopeSimple size={16} /> <span>{email}</span>
+          </a>
+          <a href={instagramLink} target="_blank" rel="noopener noreferrer" class={chipBase} aria-label="Instagram">
+            <InstagramLogo size={16} /> <span>@care4it_cb</span>
+          </a>
+          <a href={whatsAppLink} target="_blank" rel="noopener noreferrer" class={chipBase} aria-label="WhatsApp">
+            <WhatsappLogo size={16} /> <span>WhatsApp</span>
+          </a>
+        </div> -->
       </div>
 
       <!-- Menú -->
-      <div>
-        <h6 class="text-lg font-semibold text-black">Menú</h6>
+      <nav aria-labelledby="footer-menu-heading">
+        <h2 id="footer-menu-heading" class={sectionTitle}>Menú</h2>
         <ul class="mt-4 space-y-2">
-          {footer.map((item, i) => (
-            <li key={i}>
-              <a
-                href={item.url}
-                class="hover:text-primary hover:underline focus:ring-2 focus:ring-primary focus:outline-none"
-                aria-label={`Ir a ${item.name}`}
-              >
-                {item.name}
-              </a>
-            </li>
-          ))}
+          {
+            footer.map((item) => (
+              <li>
+                <a href={item.url} class={linkBase}>
+                  {item.name}
+                </a>
+              </li>
+            ))
+          }
         </ul>
-      </div>
+      </nav>
 
-      <!-- Contacto (con Instagram en lugar de teléfono) -->
+      <!-- Contacto -->
       <div>
-        <h6 class="text-lg font-semibold text-black">Contacto</h6>
+        <h2 class={sectionTitle}>Contacto</h2>
         <ul class="mt-4 space-y-2">
-          <li>
-            <a
-              href={`mailto:${email}`}
-              class="flex items-center gap-2 hover:text-primary hover:underline focus:ring-2 focus:ring-primary focus:outline-none"
-              aria-label="Enviar un correo"
-            >
-              <EnvelopeSimple size={20} weight="regular" /> Email
-            </a>
-          </li>
-          <li>
-            <a
-              href={instagramLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 hover:text-primary hover:underline focus:ring-2 focus:ring-primary focus:outline-none"
-              aria-label="Visitar nuestro Instagram"
-            >
-              <InstagramLogo size={20} weight="regular" /> Instagram
-            </a>
-          </li>
-          <li>
-            <a
-              href={whatsAppLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 hover:text-primary hover:underline focus:ring-2 focus:ring-primary focus:outline-none"
-              aria-label="Escribenos por WhatsApp"
-            >
-              <WhatsappLogo size={20} weight="regular" /> WhatsApp
-            </a>
-          </li>
-          <li>
-            <a
-              href={whatsAppLink2}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 hover:text-primary hover:underline focus:ring-2 focus:ring-primary focus:outline-none"
-              aria-label="Escribenos por WhatsApp"
-            >
-              <WhatsappLogo size={20} weight="regular" /> WhatsApp
-            </a>
-          </li>
+          {
+            contactLinks.map(({ href, icon: Icon, label, ext }) => (
+              <li>
+                <a
+                  href={href}
+                  target={ext ? "_blank" : undefined}
+                  rel={ext ? "noopener noreferrer" : undefined}
+                  class={linkBase}
+                  aria-label={label}
+                >
+                  <Icon size={18} /> <span>{label}</span>
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- Copyright con año dinámico -->
-  <div class="border-t border-border py-6 text-center text-gray-500 text-sm">
-    <p>{copyright.replace("2025", currentYear.toString())}</p>
+  <div class="border-t border-secondary/30">
+    <div class="container px-4 py-6">
+      <div
+        class="flex flex-col items-center justify-between gap-4 text-center text-sm text-gray-500 md:flex-row md:text-left"
+      >
+        <p>
+          Copyright © {currentYear}. Diseñado y desarrollado por{" "}
+          <a
+            href={author.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary hover:text-primary/80 underline"
+          >
+            {author.name}
+          </a>
+        </p>
+
+        <!-- <div class="flex items-center gap-4">
+          <a href="/politica-de-privacidad" class="hover:text-primary hover:underline">Privacidad</a>
+          <span class="text-gray-300">•</span>
+          <a href="/terminos" class="hover:text-primary hover:underline">Términos</a>
+        </div> -->
+      </div>
+    </div>
   </div>
 </footer>
-

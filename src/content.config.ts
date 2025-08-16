@@ -35,8 +35,8 @@ const homepageCollection = defineCollection({
       our_service: z.array(
         z.object({
           title: z.string(),
-          description: z.string().optional(),
-          image: z.string().optional(),
+          description: z.string(),
+          image: z.string(),
           imageDes: z.string(),
           list: z.array(z.string()).optional(),
           video: z

@@ -1,90 +1,105 @@
 ---
 import CardExtension from "@/layouts/function-components/CardExtension";
-import { AiFillCheckCircle } from "react-icons/ai";
 import * as PhosphorIcons from "phosphor-react";
-import { Image } from "astro:assets";
-
 
 const { card, benefits } = Astro.props;
----
 
+// Tercer bloque (Comunicaciones) con fallback seguro
+const comm = card?.list?.[2];
+---
 <section class="infra py-16">
   <div class="container">
-    <!-- Título de Infraestructura -->
-    <div class="text-center mb-10">
-      <!-- <h2 class="h3">{card.title}</h2> -->
-      
-    </div>
+    <!-- Encabezado -->
+    <header class="mb-10 text-center md:text-left">
+      <!-- Si quieres mostrar el título general de la sección, descomenta la línea de abajo -->
+      <!-- <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Infraestructura</h2>
+      <div class="mt-2 h-1 w-16 rounded bg-secondary mx-auto md:mx-0"></div> -->
+    </header>
 
-    {card.list && card.list.length > 0 ? (
-      <div class="flex flex-col space-y-8">
-        <!-- Primera fila: Dos tarjetas -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {card?.list && card.list.length > 0 ? (
+      <div class="flex flex-col gap-10">
+        
+        <div
+          class="grid grid-cols-1 gap-6 md:grid-cols-2"
+          role="list"
+          aria-label="Bloques de infraestructura"
+        >
           {card.list.slice(0, 2).map((item, index) => (
-            <CardExtension
-              key={index}
-              title={item.title}
-              description={item.description}
-            />
+            <div
+              role="listitem"
+              class="rounded-xl border border-border bg-white p-6 transition"
+            >
+              <CardExtension
+                key={index}
+                title={item.title}
+                description={item.description}
+              />
+            </div>
           ))}
         </div>
 
-        <!-- Segunda fila: "Comunicaciones" con lista de beneficios -->
-        {card.list.length > 2 && (
-        <div>
-        <div class="flex flex-col md:flex-row items-center md:items-start p-6 gap-2 space-y-4 md:space-y-0 md:space-x-6">
-            <div>
-              <h3 class="">{card.list[2].title}</h3>
-              <p class="mt-2">{card.list[2].description}</p>
-
-              {/* {card.list[2].listItem && card.list[2].listItem.length > 0 && (
-                <ul class="mt-4 space-y-2">
-                  {card.list[2].listItem.map((listItem,) => (
-                    <li class="flex items-center gap-2">
-                      <AiFillCheckCircle className="text-primary w-5 h-5" />
-                      {listItem}
-                    </li>
-                  ))}
-                </ul>
-              )} */}
-            </div>
-
-            
-          </div>
-
-          <div class="">
-  <div class="container">
-    <h4 class="mt-4 text-gray-600 px-2 text-lg font-normal">{benefits.description}</h4>
-
-    <!-- Lista de beneficios -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
-      {benefits.list.map((benefit) => {
-        const IconComponent = PhosphorIcons[benefit.icon];
-
-        return (
-          <div class="flex flex-col items-center p-6">
-            <div class="bg-secondary/10 text-primary rounded-full p-4 flex items-center justify-center">
-              {IconComponent ? (
-                <IconComponent size={28} weight="regular" />
-              ) : (
-                <span class="text-lg">?</span> <!-- Ícono genérico si no se encuentra -->
+        {comm && (
+          <section
+            class="rounded-xl border border-border bg-white p-6 md:p-8 "
+            aria-labelledby="infra-comm-title"
+          >
+            <header class="mb-4">
+              <h3
+                id="infra-comm-title"
+                class="text-xl md:text-2xl font-semibold tracking-tight"
+              >
+                {comm.title}
+              </h3>
+              {comm.description && (
+                <p class="mt-2 text-[15px] leading-relaxed text-dark/80">
+                  {comm.description}
+                </p>
               )}
-            </div>
+            </header>
 
-            <span class="mt-2 text-base font-semibold">{benefit.title}</span>
-          </div>
-        );
-      })}
-    </div>
-  </div>
-</div>
+            <div class="my-4 h-px w-full bg-border"></div>
 
-        </div>
+            {benefits?.list && benefits.list.length > 0 && (
+              <div aria-labelledby="infra-comm-benefits">
+                <h4
+                  id="infra-comm-benefits"
+                  class="text-sm  text-dark/70 mb-3"
+                >
+                  {benefits?.description ?? "Beneficios para tu empresa"}
+                </h4>
+
+                <ul
+                  class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3"
+                  role="list"
+                >
+                  {benefits.list.map((benefit, i) => {
+                    const IconComponent =
+                      PhosphorIcons[benefit.icon] ?? PhosphorIcons.Question;
+
+                    return (
+                      <li
+                        key={`benefit-${i}`}
+                        role="listitem"
+                        class="flex items-center gap-3 rounded-lg bg-theme-light/30 p-4"
+                      >
+                        <div class="shrink-0 rounded-full  p-2 text-primary">
+                          <IconComponent size={20} weight="regular" />
+                          <span class="sr-only">Ícono</span>
+                        </div>
+                        <span class="text-sm font-semibold leading-6 text-dark">
+                          {benefit.title}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+          </section>
         )}
       </div>
     ) : (
-      <p class="">No hay datos para mostrar.</p>
+      <p class="text-dark/70">No hay datos para mostrar.</p>
     )}
   </div>
-
 </section>

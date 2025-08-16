@@ -1,66 +1,66 @@
 ---
 import config from "@/config/config.json";
 import * as PhosphorIcons from "phosphor-react";
-import { Image } from "astro:assets";
 
 const {
   call_to_action: { title, description, contacts },
 } = config;
-const whatsAppLink = `${config.params.whatsAppLink}?text=${config.params.whatsAppMessage}`;
+
+const whatsAppHref = `${config.params.whatsAppLink}?text=${config.params.whatsAppMessage}`;
+
+const orderedContacts = [...contacts].sort((a, b) => {
+  const score = (t: string) => (t.toLowerCase() === "whatsapp" ? 0 : t.toLowerCase() === "email" ? 1 : 2);
+  return score(a.title) - score(b.title);
+});
+
+// Utilidad para resolver href sin tocar los datos originales
+const resolveHref = (c: { title: string; link: string }) =>
+  c.title.toLowerCase() === "whatsapp" ? whatsAppHref : c.link;
 ---
 
 <section class="px-5 py-[64px] xl:py-[120px] cta" id="contacto">
   <div class="container">
-    <div class="row justify-center rounded-b-[80px] rounded-t-[20px] px-6 lg:px-[30px] pb-[25px] pt-1">
-      <div class="">
-        <div class="row text-center">
-          <div class="">
-            <h2 class="h2">{title}</h2>
-          </div>
-          <div class="mt-4">
-            <p class="text-lg">{description}</p>
-          </div>
-        </div>
+    <div class="row justify-center rounded-b-[80px] rounded-t-[20px] px-6 lg:px-[30px] pb-8 pt-2">
+      <!-- Encabezado -->
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="h2 tracking-tight">{title}</h2>
+        <p class="text-base sm:text-lg mt-3 ">{description}</p>
+      </div>
 
-        <!-- Contenedor de botones de contacto -->
-        <div class="contacts gap-8 mt-8 flex flex-wrap justify-center">
-          {contacts.map((contact) => {
-            // Verificar si el contacto es de WhatsApp
-            if (contact.title === "WhatsApp") {
-              contact.link = whatsAppLink; // Actualiza el link de WhatsApp
-            }
-
-            const IconComponent = PhosphorIcons[contact.icon];
-
+      <!-- Botones -->
+      <div class="contacts mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full">
+        {
+          orderedContacts.map((contact) => {
+            const IconComponent = PhosphorIcons[contact.icon] ?? PhosphorIcons.ChatCircleDots;
+            const href = resolveHref(contact);
+            const aria = `Contactar por ${contact.title}`;
             return (
               <a
-                key={contact.link}
-                href={contact.link}
+                key={`${contact.title}-${contact.link}`}
+                href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Ir a ${contact.title}`}
-                class="flex items-center gap-4  min-w-72 text-primary border border-gray-200  px-6 py-6 rounded hover:shadow hover:border-primary transition-all duration-300"
+                aria-label={aria}
+                class="group flex items-center gap-4 rounded-xl border border-primary/20 px-5 py-5 transition
+                       hover:shadow-md hover:border-primary
+                       focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
+                role="button"
               >
-                <!-- Icono dentro de un círculo blanco -->
-                <div class="bg-secondary/45 rounded-full p-4 flex items-center justify-center">
-                  {IconComponent ? (
-                    <IconComponent size={24} weight="light" class="" />
-                  ) : (
-                    <span class="text-lg text-primary">?</span> <!-- Ícono genérico -->
-                  )}
-                </div>
+                <!-- Ícono -->
+                <span class="shrink-0 rounded-full bg-secondary/30 p-3 ring-1 ring-secondary/50">
+                  <IconComponent size={26} weight="regular" class="text-primary" aria-hidden="true" />
+                </span>
 
-                <!-- Título y subtítulo -->
-                <div class="text-left">
-                  <h3 class="text-lg font-semibold">{contact.title}</h3>
-                  <p class="text-sm text-black">{contact.subtitle}</p>
-                </div>
+                <!-- Texto -->
+                <span class="flex min-w-0 flex-col">
+                  <span class="text-base font-semibold text-dark capitalize">{contact.title}</span>
+                  <span class="text-sm truncate">{contact.subtitle}</span>
+                </span>
               </a>
             );
-          })}
-        </div>
+          })
+        }
       </div>
-      
     </div>
   </div>
 </section>

@@ -7,7 +7,7 @@ const TestimonialSlider = ({ list }) => {
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-8">
       {list.map((item, i) => (
         <div key={`feature-${i}`} className="flex">
-          <div className="review flex flex-col  bg-white p-6 shadow-md rounded-lg border border-gray-200">
+          <div className="review flex flex-col bg-white p-6 rounded-lg border border-t-4 border-secondary">
             {/* Autor */}
             <h4 className="text-lg font-semibold text-gray-800">{item.author}</h4>
 

@@ -12,7 +12,7 @@ banner:
 ##key features
 key_features:
   title: "Seguridad física e informática"
-  description: Ofrecemos soluciones de seguridad física e informática diseñadas para optimizar y proteger tu empresa
+  description: Soluciones avanzadas en seguridad digital y física para resguardar tu empresa
   feature_list:
     - icon: "SecurityCamera" #icon package phosphor-icon 
       title: Videoseguridad
@@ -43,8 +43,8 @@ service:
 
 #testimonial
 testimonial:
-  title: Nuestros servicios
-  description: Ofrecemos una amplia gama de servicios diseñados para optimizar y proteger tu empresa
+  title: Soluciones tecnológicas para empresas
+  description: Optimizamos la seguridad, conectividad y rendimiento de tu empresa
   testimonial_list:
     - author: Consultoria
       avatar: "/images/users/user-5.png"
@@ -59,7 +59,7 @@ testimonial:
     - author: Servicios IT
       avatar: "/images/users/user-2.png"
       listItem:
-      - Mantenimiento preventivo y soporte para desktops, servidores y redes
+      - Soporte especializado en infraestructura y dispositivos corporativos
       - Provisión de equipamiento informático
       - Virtualización/Cloud Computing
       - Soluciones de backup
