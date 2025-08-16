@@ -83,7 +83,7 @@ const homepageCollection = defineCollection({
           listItem: z.array(z.string()).optional(), // Lista opcional con elementos string
         })
       ),
-    }),    
+    }),
     benefits: z.object({
       title: z.string(),
       description: z.string(),
@@ -94,7 +94,7 @@ const homepageCollection = defineCollection({
           icon: z.string(),
         })
       ),
-    }),    
+    }),
   }),
 });
 
@@ -420,6 +420,18 @@ const pagesCollection = defineCollection({
     image: z.string().optional(),
     layout: z.string().optional(),
     draft: z.boolean().optional(),
+    items: z
+      .array(
+        z.object({
+          title: z.string(),
+          key: z.string().optional(),
+          image: z.string().optional(),
+          description: z.string().optional(),
+          link: z.string().optional(),
+          brands: z.array(z.string()).optional(),
+        })
+      )
+      .optional(),
   }),
 });
 

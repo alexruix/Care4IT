@@ -2,6 +2,7 @@
 import TwSizeIndicator from "@/components/TwSizeIndicator.astro";
 import config from "@/config/config.json";
 import theme from "@/config/theme.json";
+const { page } = Astro.props;
 import { plainify } from "@/lib/utils/textConverter";
 import Footer from "@/partials/Footer.astro";
 import Header from "@/partials/Header.astro";
@@ -12,6 +13,15 @@ import { ClientRouter } from "astro:transitions";
 // font families
 const pf = theme.fonts.font_family.primary;
 const sf = theme.fonts.font_family.secondary;
+
+// Colors
+const pageTheme = theme.colors?.pages?.[page] || null;
+
+const styleVars = pageTheme
+  ? `--page-bg:${pageTheme.bg};
+     --page-text:${pageTheme.text};
+     --page-heading:${pageTheme.heading};`
+  : ``;
 
 let fontPrimary, fontSecondary;
 if (theme.fonts.font_family.primary) {
@@ -94,7 +104,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       name="description"
       content={plainify(
-        description ? description : config.metadata.meta_description
+        description ? description : config.metadata.meta_description,
       )}
     />
 
@@ -107,7 +117,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       property="og:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title
+        meta_title ? meta_title : title ? title : config.site.title,
       )}
     />
 
@@ -115,7 +125,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       property="og:description"
       content={plainify(
-        description ? description : config.metadata.meta_description
+        description ? description : config.metadata.meta_description,
       )}
     />
     <meta property="og:type" content="website" />
@@ -128,7 +138,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       name="twitter:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title
+        meta_title ? meta_title : title ? title : config.site.title,
       )}
     />
 
@@ -136,7 +146,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <meta
       name="twitter:description"
       content={plainify(
-        description ? description : config.metadata.meta_description
+        description ? description : config.metadata.meta_description,
       )}
     />
 
@@ -157,7 +167,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
-  <body>
+  <body class={Astro.props.page ? `page-${page}` : ""} style={styleVars}>
     <TwSizeIndicator />
     <Header />
     <main id="main-content">

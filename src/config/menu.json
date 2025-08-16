@@ -1,27 +1,23 @@
 {
   "main": [
     {
-      "name": "Sobre nosotros",
-      "url": "/#nosotros"
-    },
-    {
       "name": "Servicios",
-      "url": "/#servicios"
+      "url": "/"
     },
     {
-      "name": "Soluciones",
-      "url": "/#soluciones"
-    },
-    {
-      "name": "Contacto",
-      "url": "/#contacto"
-    }    
+      "name": "Insumos",
+      "url": "/insumos"
+    }  
   ],
 
   "footer": [
     {
       "name": "Sobre nosotros",
       "url": "/#nosotros"
+    },
+    {
+      "name": "Insumos",
+      "url": "/insumos"
     },
     {
       "name": "Servicios",

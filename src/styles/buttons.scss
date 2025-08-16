@@ -13,6 +13,7 @@
   }
 }
 
+
 .btn-outline-white {
   @apply rounded-[50px] bg-transparent text-center capitalize text-dark;
 }
@@ -27,4 +28,8 @@
 
 .btn-sm {
   @apply h-[42px] leading-[24px];
+}
+
+.btn-whatsapp{
+  @apply min-w-[150px] bg-green-500 text-white border-0 hover:bg-green-600 rounded-lg text-center flex gap-2 px-4 py-2 items-center
 }

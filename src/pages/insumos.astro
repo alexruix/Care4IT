@@ -1,0 +1,23 @@
+---
+import Base from "@/layouts/Base.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import HorizontalList from "@/layouts/components/HorizontalList.astro";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { getEntry, render } from "astro:content";
+
+const entry = (await getEntry("pages", "insumos")) as CollectionEntry<"pages">;
+const { Content } = await render(entry);
+
+const block = {
+  id: entry.data.id,
+  title: entry.data.title,
+  description: entry.data.description,
+  items: entry.data.items ?? [],
+};
+---
+
+<Base title={entry.data.id} page="insumos">
+  <HorizontalList insumos={block} />
+</Base>
+

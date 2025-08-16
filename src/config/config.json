@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "Care4iT",
+    "title": "care4it",
     "base_url": "https://care4it.com.ar",
     "base_path": "/",
     "trailing_slash": false,
@@ -8,7 +8,7 @@
     "logo": "/images/logo_.png",
     "logo_width": "147",
     "logo_height": "31",
-    "logo_text": "Care4iT"
+    "logo_text": "care4it"
   },
   "settings": {
     "pagination": 6,
@@ -50,8 +50,8 @@
     "copyright": "Copyright © 2025"
   },
   "metadata": {
-    "meta_author": "Care4iT",
+    "meta_author": "care4it",
     "meta_image": "/images/og-image.png",
-    "meta_description": "Care4iT ofrece soluciones IT, infraestructura fisica, infraestructura informatica y seguridad para empresas en Argentina. Optimiza tu negocio con tecnología avanzada"
+    "meta_description": "Care4it ofrece soluciones IT, infraestructura fisica, infraestructura informatica y seguridad para empresas en Argentina. Optimiza tu negocio con tecnología avanzada"
   }
 }

@@ -3,6 +3,46 @@
 @tailwind components;
 @tailwind utilities;
 
+body.page-insumos {
+  background: var(--page-bg, linear-gradient(#0E1B27, #33628D));
+  color: var(--page-text, #A8C3D4);
+
+  header,
+  footer {
+    background: #0E1B27;
+    color: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--page-heading, #E0F7FF);
+  }
+
+  p,
+  li,
+  small {
+    color: var(--page-text, #A8C3D4);
+  }
+
+  a, span {
+    color: var(--page-heading, #ffffff);
+  }
+
+  a:hover {
+    color: #ffffff;
+  }
+
+  svg {
+    fill: currentColor;
+    stroke: currentColor;
+  }
+}
+
+
 @layer base {
   @include meta.load-css("base");
 }
