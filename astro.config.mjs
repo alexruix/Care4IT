@@ -27,7 +27,7 @@ export default defineConfig({
         "@/shortcodes/Accordion",
         "@/shortcodes/Notice",
         "@/shortcodes/Video",
-        "@/shortcodes/Youtube",
+        
         "@/shortcodes/Blockquote",
         "@/shortcodes/Badge",
         "@/shortcodes/ContentBlock",
