@@ -50,7 +50,7 @@ const whatsAppLink = `${whatsAppBase}?text=${whatsAppMsg}`;
         {items.map((it) => {
           const brands = normalizeBrands(it.brands);
           return (
-            <div class="group rounded-lg overflow-hidden shadow-sm hover:shadow-md transition border border-accent">
+            <div class="group rounded-lg overflow-hidden shadow-sm hover:shadow-md transition border border-accent/80">
               <div class="relative">
                   <img
                     src={it.image ?? FALLBACK_IMG}
@@ -69,7 +69,7 @@ const whatsAppLink = `${whatsAppBase}?text=${whatsAppMsg}`;
                 {brands.length > 0 && (
                   <div class="mt-1 mb-2 flex flex-wrap gap-2">
                     {brands.map((b) => (
-                      <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-[#0E1B27]/50 text-[#E0F7FF] text-xs font-medium">
+                      <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-[#162B3A]/60 text-[#E0F7FF] text-xs font-medium">
                         {b.logo ? (
                           <img src={b.logo} alt={b.name} class="h-4 w-auto object-contain" loading="lazy" />
                         ) : null}
@@ -80,14 +80,14 @@ const whatsAppLink = `${whatsAppBase}?text=${whatsAppMsg}`;
                 )}
 
                 <a
-                  href={`${whatsAppBase}?text=${whatsAppMsg}${encodeURIComponent(" " + (it.title ?? ""))}`}
+                  href={`${whatsAppBase}?text=${whatsAppMsg}${encodeURIComponent(" " + (it.title.toLowerCase() ?? ""))}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="btn btn-whatsapp mt-1 w-fit"
+                  class="btn btn-whatsapp_outline mt-1 w-fit"
                   aria-label={`Consultar por WhatsApp sobre ${it.title ?? "este insumo"}`}
                 >
-                  <WhatsappLogo size={18} className="text-black" />
-                  Consultar por {it.title ?? "este insumo"}
+                  <WhatsappLogo size={20} className="text-dark" />
+                  Consultar por {(it.title ?? "este insumo").toLowerCase()}
                 </a>
               </div>
             </div>
@@ -98,11 +98,11 @@ const whatsAppLink = `${whatsAppBase}?text=${whatsAppMsg}`;
       <p class="mt-6 text-gray-500">No hay insumos para mostrar.</p>
     )}
 
-    <div class="mt-10 flex justify-center">
+    <!-- <div class="mt-10 flex justify-center">
       <a href={whatsAppLink} target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
         <WhatsappLogo size={22} className="text-black" />
         ¿Tenés dudas? Escribinos por WhatsApp
       </a>
-    </div>
+    </div> -->
   </div>
 </section>

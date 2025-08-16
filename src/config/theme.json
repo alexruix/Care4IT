@@ -8,7 +8,8 @@
         "border": "#EBEBEB",
         "theme_light": "#E5E5E5",
         "theme_dark": "#1a202c",
-        "accent": "#00E5FF"
+        "accent": "#08FFC8",
+        "wsp": "#25D366"
       },
       "text_color": {
         "default": "#888888",

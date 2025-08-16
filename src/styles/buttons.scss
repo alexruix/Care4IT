@@ -30,6 +30,6 @@
   @apply h-[42px] leading-[24px];
 }
 
-.btn-whatsapp{
-  @apply min-w-[150px] bg-green-500 text-dark border-0 hover:bg-green-600 rounded-lg text-center flex gap-2 px-4 py-2 items-center
+.btn-whatsapp_outline{
+  @apply  border-wsp bg-wsp  hover:bg-wsp/80 text-dark rounded-lg text-center flex gap-2 px-4 py-2 items-center
 }

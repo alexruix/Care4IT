@@ -41,6 +41,7 @@ module.exports = {
         dark: theme.colors.default.text_color.dark,
         primary: theme.colors.default.theme_color.primary,
         accent: theme.colors.default.theme_color.accent,
+        wsp: theme.colors.default.theme_color.wsp,
         secondary: theme.colors.default.theme_color.secondary,
         body: theme.colors.default.theme_color.body,
         border: theme.colors.default.theme_color.border,

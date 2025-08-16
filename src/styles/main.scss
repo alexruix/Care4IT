@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 body.page-insumos {
-  background: var(--page-bg, linear-gradient(#0E1B27, #33628D));
+  background: var(--page-bg, linear-gradient(#0E1B27, #2F6B94));
   color: var(--page-text, #A8C3D4);
 
   header,
@@ -27,6 +27,11 @@ body.page-insumos {
   small {
     color: var(--page-text, #A8C3D4);
   }
+
+  header nav a{
+    color: #E0F7FF;
+  }
+
 
   svg {
     fill: currentColor;
