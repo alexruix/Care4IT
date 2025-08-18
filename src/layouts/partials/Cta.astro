@@ -13,14 +13,13 @@ const orderedContacts = [...contacts].sort((a, b) => {
   return score(a.title) - score(b.title);
 });
 
-// Utilidad para resolver href sin tocar los datos originales
 const resolveHref = (c: { title: string; link: string }) =>
   c.title.toLowerCase() === "whatsapp" ? whatsAppHref : c.link;
 ---
 
 <section class="px-5 py-[64px] xl:py-[120px] cta" id="contacto">
   <div class="container">
-    <div class="row justify-center rounded-b-[80px] rounded-t-[20px] px-6 lg:px-[30px] pb-8 pt-2">
+    <div class="row justify-center lg:px-[30px] pb-8 pt-2">
       <!-- Encabezado -->
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="h2 tracking-tight">{title}</h2>
@@ -46,12 +45,10 @@ const resolveHref = (c: { title: string; link: string }) =>
                        focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
                 role="button"
               >
-                <!-- Ícono -->
                 <span class="shrink-0 rounded-full bg-secondary/30 p-3 ring-1 ring-secondary/50">
                   <IconComponent size={26} weight="regular" class="text-primary" aria-hidden="true" />
                 </span>
 
-                <!-- Texto -->
                 <span class="flex min-w-0 flex-col">
                   <span class="text-base font-semibold text-dark capitalize">{contact.title}</span>
                   <span class="text-sm truncate">{contact.subtitle}</span>

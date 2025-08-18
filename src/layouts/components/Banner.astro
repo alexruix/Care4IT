@@ -1,37 +1,49 @@
 ---
 import { markdownify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets";
+
 const { banner } = Astro.props;
-const { title, button, image, content } = banner;
+const { title, content, button, image } = banner;
 ---
 
-<section class="section banner relative">
-  <div class="container">
-    <div class="flex flex-col-reverse lg:flex-row items-center">
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-white to-theme-light/40"></div>
 
+  <div class="container relative py-12 md:py-16 lg:py-24">
+    <div class="grid items-center gap-10 lg:grid-cols-12">
+      {/* Imagen primero en mobile, segundo en desktop */}
+      <div class="lg:col-span-6 order-1 lg:order-2">
+        <figure class="relative overflow-hidden rounded-2xl ring-1 ring-border/80 shadow-xl">
+          <Image
+            src={image}
+            alt="Infraestructura y tecnología"
+            width={1200}
+            height={750}
+            class="w-full h-full object-cover aspect-[16/10] md:aspect-[16/9] duration-500"
+            loading="eager"
+            decoding="async"
+          />
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/10 via-transparent to-transparent"></div>
+        </figure>
+      </div>
 
-      <div class="w-full lg:w-5/12 text-center lg:text-left">
-        <h1 class="banner-title" set:html={markdownify(title)} />
-
-        <p class="mt-6" set:html={markdownify(content)} />
-
-        {
-          button.enable && (
-            <a class="btn btn-blue mt-8" href={button.link}>
+      <div class="lg:col-span-6 order-2 lg:order-1">
+        <h1
+          class="text-3xl leading-tight font-extrabold tracking-tight text-dark md:text-4xl xl:text-5xl"
+          set:html={markdownify(title)}
+        />
+        <p
+          class="mt-4 max-w-xl text-base leading-relaxed text-text sm:text-lg"
+          set:html={markdownify(content)}
+        />
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          {button?.enable && (
+            <a href={button.link} class="btn btn-blue">
               {button.label}
             </a>
-          )
-        }
-      </div>
-      <div class="w-full lg:w-7/12 flex justify-center lg:justify-end mb-6 lg:mb-0">
-        <Image
-          class="w-full object-contain rounded-lg"
-          alt="banner"
-          src={image}
-          width={603}
-          height={396}
-        />
+          )}
+        </div>
       </div>
     </div>
-  </div>  
+  </div>
 </section>
