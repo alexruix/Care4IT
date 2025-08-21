@@ -83,7 +83,7 @@ const whatsAppLink = `${whatsAppBase}?text=${whatsAppMsg}`;
                   href={`${whatsAppBase}?text=${whatsAppMsg}${encodeURIComponent(" " + (it.title.toLowerCase() ?? ""))}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="btn btn-whatsapp_outline mt-1 w-fit"
+                  class="btn btn-whatsapp_outline whitespace-nowrap min-w-[260px] sm:min-w-0 w-full sm:w-auto mt-1 w-fit"
                   aria-label={`Consultar por WhatsApp sobre ${it.title ?? "este insumo"}`}
                 >
                   <WhatsappLogo size={20} className="text-dark" />

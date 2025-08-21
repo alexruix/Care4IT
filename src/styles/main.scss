@@ -7,11 +7,14 @@ body.page-insumos {
   background: var(--page-bg, linear-gradient(#0E1B27, #2F6B94));
   color: var(--page-text, #A8C3D4);
 
-  header,
   footer {
     background: #0E1B27;
     color: inherit;
     border: #2F6B94;
+  }
+
+  header{
+    background: #fff;
   }
 
   h1,
@@ -27,10 +30,6 @@ body.page-insumos {
   li,
   small {
     color: var(--page-text, #A8C3D4);
-  }
-
-  header nav a{
-    color: #E0F7FF;
   }
 
   svg {
