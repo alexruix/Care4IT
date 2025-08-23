@@ -24,7 +24,7 @@ items:
   - title: Tóner y Tintas
     key: "toner-tintas"
     image: "/images/Toner2.png"
-    description: "Cartuchos y consumibles originales y alternativos para impresoras"
+    description: "Cartuchos y consumibles para impresoras"
     brands: ["GTC"]
 
   - title: Componentes y Gaming
