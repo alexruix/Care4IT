@@ -23,7 +23,7 @@ items:
 
   - title: Tóner y Tintas
     key: "toner-tintas"
-    image: "/images/Toner.png"
+    image: "/images/Toner2.png"
     description: "Cartuchos y consumibles originales y alternativos para impresoras"
     brands: ["GTC"]
 
