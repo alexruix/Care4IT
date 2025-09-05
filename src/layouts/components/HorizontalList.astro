@@ -28,7 +28,6 @@ const items: Item[] = Array.isArray(block?.items)
   ? (block!.items as Item[])
   : [];
 
-
 const normalizeBrands = (brands?: Brand[]) =>
   (brands ?? []).map((b) => (typeof b === "string" ? { name: b } : b));
 
@@ -48,7 +47,6 @@ const whatsAppLink = `${whatsAppBase}?text=${whatsAppMsg}`;
       items.length > 0 ? (
         <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((it, i) => {
-            
             const imgs =
               Array.isArray(it.images) && it.images.length
                 ? it.images
@@ -166,13 +164,12 @@ const whatsAppLink = `${whatsAppBase}?text=${whatsAppMsg}`;
 
         const w = el.clientWidth;
         const maxScroll = el.scrollWidth - el.clientWidth;
-
         const newScroll = el.scrollLeft + w * dir;
 
         if (newScroll > maxScroll + 5) {
-          el.scrollTo({ left: 0, behavior: "smooth" });
+          el.scrollTo({ left: 0, behavior: "auto" });
         } else if (newScroll < -5) {
-          el.scrollTo({ left: maxScroll, behavior: "smooth" });
+          el.scrollTo({ left: maxScroll, behavior: "auto" });
         } else {
           el.scrollBy({ left: w * dir, behavior: "smooth" });
         }
