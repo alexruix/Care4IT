@@ -426,6 +426,7 @@ const pagesCollection = defineCollection({
           title: z.string(),
           key: z.string().optional(),
           image: z.string().optional(),
+          images: z.array(z.string()).optional(),
           description: z.string().optional(),
           link: z.string().optional(),
           brands: z.array(z.string()).optional(),

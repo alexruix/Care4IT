@@ -1,10 +1,4 @@
 ---
-/**
- * Soporta:
- *   <HorizontalList insumos={...} />
- *   <HorizontalList data={...} />
- * items[]: { title, key, image, link?, description?, brands?: (string | {name, logo?})[] }
- */
 type Brand = string | { name: string; logo?: string };
 type Item = {
   title: string;
@@ -14,7 +8,12 @@ type Item = {
   brands?: Brand[];
   description?: string;
 };
-type Block = { title?: string; key?: string; description?: string; items?: Item[] };
+type Block = {
+  title?: string;
+  key?: string;
+  description?: string;
+  items?: Item[];
+};
 
 const { insumos, data } = Astro.props as { insumos?: Block; data?: Block };
 
@@ -25,16 +24,16 @@ const FALLBACK_IMG = "/images/placeholder.jpg";
 const block: Block = insumos ?? data ?? {};
 const title = block?.title ?? "Insumos";
 const description = block?.description ?? "";
-const items: Item[] = Array.isArray(block?.items) ? (block!.items as Item[]) : [];
+const items: Item[] = Array.isArray(block?.items)
+  ? (block!.items as Item[])
+  : [];
 
-// Normaliza brands a objetos { name, logo? }
+
 const normalizeBrands = (brands?: Brand[]) =>
   (brands ?? []).map((b) => (typeof b === "string" ? { name: b } : b));
 
-// WhatsApp
-const whatsAppBase = config.params.whatsAppLink;
+const whatsAppBase = config.params.whatsAppLink2;
 const whatsAppMsg = config.params.whatsAppMessage;
-// CTA global
 const whatsAppLink = `${whatsAppBase}?text=${whatsAppMsg}`;
 ---
 
@@ -45,64 +44,139 @@ const whatsAppLink = `${whatsAppBase}?text=${whatsAppMsg}`;
       {description && <p class="mt-3 text-gray-600">{description}</p>}
     </div>
 
-    {items.length > 0 ? (
-      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {items.map((it) => {
-          const brands = normalizeBrands(it.brands);
-          return (
-            <div class="group rounded-lg overflow-hidden shadow-sm hover:shadow-md transition border border-accent/80">
-              <div class="relative">
-                  <img
-                    src={it.image ?? FALLBACK_IMG}
-                    alt={it.title ?? "insumo"}
-                    loading="lazy"
-                    class="w-full aspect-[16/9] object-cover"
-                  />
-                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-dark/70 to-dark/5 p-3 pb-1">
-                  <h3 class="text-lg font-semibold">{it.title ?? "Insumo"}</h3>
-                </div>
-              </div>
+    {
+      items.length > 0 ? (
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {items.map((it, i) => {
+            
+            const imgs =
+              Array.isArray(it.images) && it.images.length
+                ? it.images
+                : [it.image ?? FALLBACK_IMG];
 
-              <div class="p-4 flex flex-col gap-3">
-                {it.description && <p class="text-sm text-gray-700">{it.description}</p>}
+            const carouselId = `crs-${i}`;
 
-                {brands.length > 0 && (
-                  <div class="mt-1 mb-2 flex flex-wrap gap-2">
-                    {brands.map((b) => (
-                      <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-[#162B3A]/60 text-[#E0F7FF] text-xs font-medium">
-                        {b.logo ? (
-                          <img src={b.logo} alt={b.name} class="h-4 w-auto object-contain" loading="lazy" />
-                        ) : null}
-                        {b.name}
-                      </span>
+            const brands = normalizeBrands(it.brands);
+
+            return (
+              <div class="group rounded-lg overflow-hidden shadow-sm hover:shadow-md transition border border-accent/80">
+                <div class="relative">
+                  <div
+                    id={carouselId}
+                    class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar"
+                    style="scrollbar-width:none;-ms-overflow-style:none;"
+                  >
+                    {imgs.map((src, k) => (
+                      <img
+                        src={src ?? FALLBACK_IMG}
+                        alt={`${it.title ?? "insumo"} ${k + 1}`}
+                        loading="lazy"
+                        class="w-full shrink-0 snap-center aspect-[16/9] object-cover"
+                      />
                     ))}
                   </div>
-                )}
 
-                <a
-                  href={`${whatsAppBase}?text=${whatsAppMsg}${encodeURIComponent(" " + (it.title.toLowerCase() ?? ""))}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn btn-whatsapp_outline whitespace-nowrap mt-1 w-fit"
-                  aria-label={`Consultar por WhatsApp sobre ${it.title ?? "este insumo"}`}
-                >
-                  <WhatsappLogo size={20} className="text-dark" />
-                  Consultar por {(it.title ?? "este insumo").toLowerCase()}
-                </a>
+                  {imgs.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        class="absolute left-2 top-1/2 -translate-y-1/2 grid place-items-center h-9 w-9 rounded-full bg-black/45 text-white backdrop-blur hover:bg-black/60"
+                        data-carousel={carouselId}
+                        data-dir="-1"
+                        aria-label="Anterior"
+                      >
+                        ‹
+                      </button>
+                      <button
+                        type="button"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 grid place-items-center h-9 w-9 rounded-full bg-black/45 text-white backdrop-blur hover:bg-black/60"
+                        data-carousel={carouselId}
+                        data-dir="1"
+                        aria-label="Siguiente"
+                      >
+                        ›
+                      </button>
+                    </>
+                  )}
+
+                  <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-dark/70 to-dark/5 p-3 pb-1">
+                    <h3 class="text-lg font-semibold">
+                      {it.title ?? "Insumo"}
+                    </h3>
+                  </div>
+                </div>
+
+                <div class="p-4 flex flex-col gap-3">
+                  {it.description && (
+                    <p class="text-sm text-gray-700">{it.description}</p>
+                  )}
+
+                  {brands.length > 0 && (
+                    <div class="mt-1 mb-2 flex flex-wrap gap-2">
+                      {brands.map((b) => (
+                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-[#162B3A]/60 text-[#E0F7FF] text-xs font-medium">
+                          {b.logo ? (
+                            <img
+                              src={b.logo}
+                              alt={b.name}
+                              class="h-4 w-auto object-contain"
+                              loading="lazy"
+                            />
+                          ) : null}
+                          {b.name}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <a
+                    href={`${whatsAppBase}?text=${whatsAppMsg}${encodeURIComponent(" " + (it.title?.toLowerCase() ?? ""))}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-whatsapp_outline whitespace-nowrap mt-1 w-fit"
+                    aria-label={`Consultar por WhatsApp sobre ${it.title ?? "este insumo"}`}
+                  >
+                    <WhatsappLogo size={20} className="text-dark" />
+                    Consultar por {(it.title ?? "este insumo").toLowerCase()}
+                  </a>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
-    ) : (
-      <p class="mt-6 text-gray-500">No hay insumos para mostrar.</p>
-    )}
-
-    <!-- <div class="mt-10 flex justify-center">
-      <a href={whatsAppLink} target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
-        <WhatsappLogo size={22} className="text-black" />
-        ¿Tenés dudas? Escribinos por WhatsApp
-      </a>
-    </div> -->
+            );
+          })}
+        </div>
+      ) : (
+        <p class="mt-6 text-gray-500">No hay insumos para mostrar.</p>
+      )
+    }
   </div>
 </section>
+
+<script is:inline>
+  const css = document.createElement("style");
+  css.innerHTML = `.no-scrollbar::-webkit-scrollbar{display:none}`;
+  document.head.appendChild(css);
+
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll("[data-carousel]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-carousel");
+        const dir = Number(btn.getAttribute("data-dir") || 1);
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        const w = el.clientWidth;
+        const maxScroll = el.scrollWidth - el.clientWidth;
+
+        const newScroll = el.scrollLeft + w * dir;
+
+        if (newScroll > maxScroll + 5) {
+          el.scrollTo({ left: 0, behavior: "smooth" });
+        } else if (newScroll < -5) {
+          el.scrollTo({ left: maxScroll, behavior: "smooth" });
+        } else {
+          el.scrollBy({ left: w * dir, behavior: "smooth" });
+        }
+      });
+    });
+  });
+</script>
