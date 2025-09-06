@@ -17,7 +17,7 @@ items:
 
   - title: Impresoras
     key: "impresoras"
-    images: ["/images/webp/Impresora.webp", "/images/webp/IMG-20250901-WA0018.webp", "/images/webp/printer.webp", "/images/webp/printer3.webp", "/images/webp/printer2.webp", "/images/webp/impresora.webp"]
+    images: ["/images/webp/impresora1.webp", "/images/webp/IMG-20250901-WA0018.webp", "/images/webp/printer.webp", "/images/webp/printer3.webp", "/images/webp/printer2.webp", "/images/webp/Impresora.webp"]
     description: "Impresoras multifunción, láser y de tinta para hogar y oficina"
     brands: ["Epson", "HP"]
 
