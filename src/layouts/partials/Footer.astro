@@ -5,14 +5,25 @@ import menu from "@/config/menu.json";
 import { EnvelopeSimple, InstagramLogo, WhatsappLogo } from "phosphor-react";
 
 const { footer } = menu;
-const { email, footer_description, instagramLink } =
-  config.params;
-  const {author} = config;
+const { email, footer_description, instagramLink } = config.params;
+const { author } = config;
+
+const pathname = Astro.url.pathname || "/";
+const isInsumos = pathname.startsWith("/insumos");
+
+const waMsg = config.params.whatsAppMessage || "";
+const msgParam = waMsg.includes("%") ? waMsg : encodeURIComponent(waMsg);
+
+const wa1 = `${config.params.whatsAppLink}?text=${msgParam}`;
+const wa2 = `${config.params.whatsAppLink2}?text=${msgParam}`;
+
+const primaryWA = isInsumos ? wa2 : wa1;
+const altWA     = isInsumos ? wa1 : wa2;
+
+const primaryLabel = isInsumos ? "WhatsApp" : "WhatsApp";
+const altLabel     = isInsumos ? "WhatsApp (alt.)" : "WhatsApp (alt.)";
 
 const currentYear = new Date().getFullYear();
-const whatsAppLink = `${config.params.whatsAppLink}?text=${config.params.whatsAppMessage}`;
-const whatsAppLink2 = `${config.params.whatsAppLink2}?text=${config.params.whatsAppMessage}`;
-
 
 const chipBase =
   "inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-3 py-2 text-sm transition hover:border-primary hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70";
@@ -24,14 +35,9 @@ const sectionTitle = "text-xs font-semibold uppercase tracking-wide";
 
 const contactLinks = [
   { href: `mailto:${email}`, icon: EnvelopeSimple, label: "Email" },
-  { href: instagramLink, icon: InstagramLogo, label: "Instagram", ext: true },
-  { href: whatsAppLink, icon: WhatsappLogo, label: "WhatsApp", ext: true },
-  {
-    href: whatsAppLink2,
-    icon: WhatsappLogo,
-    label: "WhatsApp (alt.)",
-    ext: true,
-  },
+  { href: instagramLink,     icon: InstagramLogo, label: "Instagram", ext: true },
+  { href: primaryWA,         icon: WhatsappLogo,  label: primaryLabel, ext: true },
+  { href: altWA,             icon: WhatsappLogo,  label: altLabel,     ext: true },
 ];
 ---
 
@@ -44,22 +50,17 @@ const contactLinks = [
         <p class="mt-4 text-sm text-gray-700 max-w-prose">
           {footer_description}
         </p>
-
       </div>
 
       <!-- Menú -->
       <nav aria-labelledby="footer-menu-heading">
         <h2 id="footer-menu-heading" class={sectionTitle}>Menú</h2>
         <ul class="mt-4 space-y-2">
-          {
-            footer.map((item) => (
-              <li>
-                <a href={item.url} class={linkBase}>
-                  {item.name}
-                </a>
-              </li>
-            ))
-          }
+          {footer.map((item) => (
+            <li>
+              <a href={item.url} class={linkBase}>{item.name}</a>
+            </li>
+          ))}
         </ul>
       </nav>
 
@@ -67,21 +68,19 @@ const contactLinks = [
       <div>
         <h2 class={sectionTitle}>Contacto</h2>
         <ul class="mt-4 space-y-2">
-          {
-            contactLinks.map(({ href, icon: Icon, label, ext }) => (
-              <li>
-                <a
-                  href={href}
-                  target={ext ? "_blank" : undefined}
-                  rel={ext ? "noopener noreferrer" : undefined}
-                  class={linkBase}
-                  aria-label={label}
-                >
-                  <Icon size={18} /> <span>{label}</span>
-                </a>
-              </li>
-            ))
-          }
+          {contactLinks.map(({ href, icon: Icon, label, ext }) => (
+            <li>
+              <a
+                href={href}
+                target={ext ? "_blank" : undefined}
+                rel={ext ? "noopener noreferrer" : undefined}
+                class={linkBase}
+                aria-label={label}
+              >
+                <Icon size={18} /> <span>{label}</span>
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
@@ -89,9 +88,7 @@ const contactLinks = [
 
   <div class="border-t border-secondary/30">
     <div class="container px-4 py-6">
-      <div
-        class="flex flex-col items-center justify-between gap-4 text-center text-sm text-gray-500 md:flex-row md:text-left"
-      >
+      <div class="flex flex-col items-center justify-between gap-4 text-center text-sm text-gray-500 md:flex-row md:text-left">
         <p>
           Copyright © {currentYear}. Diseñado y desarrollado por{" "}
           <a
@@ -103,12 +100,6 @@ const contactLinks = [
             {author.name}
           </a>
         </p>
-
-        <!-- <div class="flex items-center gap-4">
-          <a href="/politica-de-privacidad" class="hover:text-primary hover:underline">Privacidad</a>
-          <span class="text-gray-300">•</span>
-          <a href="/terminos" class="hover:text-primary hover:underline">Términos</a>
-        </div> -->
       </div>
     </div>
   </div>
