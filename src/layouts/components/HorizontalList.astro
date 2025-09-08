@@ -52,7 +52,7 @@ const whatsAppLink = `${whatsAppBase}?text=${whatsAppMsg}`;
           : [it.image ?? FALLBACK_IMG];
 
       const carouselId = `crs-${i}`;
-      const isCardLCP = i === 0; // Solo la primera card
+      const isCardLCP = i === 0; 
       const brands = normalizeBrands(it.brands);
 
       return (
@@ -67,8 +67,8 @@ const whatsAppLink = `${whatsAppBase}?text=${whatsAppMsg}`;
                 <img
                   src={src ?? FALLBACK_IMG}
                   alt={`${it.title ?? "insumo"} ${k + 1}`}
-                  loading={isCardLCP && k === 0 ? "eager" : "lazy"}   // 👈
-                  fetchpriority={isCardLCP && k === 0 ? "high" : undefined} // 👈
+                  loading={isCardLCP && k === 0 ? "eager" : "lazy"}  
+                  fetchpriority={isCardLCP && k === 0 ? "high" : undefined} 
                   class="w-full shrink-0 snap-center aspect-[16/9] object-cover"
                 />
               ))}

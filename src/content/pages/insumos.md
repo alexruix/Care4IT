@@ -23,13 +23,13 @@ items:
 
   - title: Tóner y Tintas
     key: "toner-tintas"
-    images: ["/images/webp/toner2.webp", "/images/webp/toner3.webp"]
+    images: ["/images/webp/toner2.webp"]
     description: "Cartuchos y consumibles para impresoras"
     brands: ["GTC"]
 
   - title: Componentes y Gaming
     key: "componentes-gaming"
-    images: ["/images/webp/gaming.webp", "/images/webp/IMG-20250901-WA0041.webp", "/images/webp/IMG-20250901-WA0071.webp", "/images/webp/IMG-20250901-WA0075.webp", "/images/webp/IMG-20250901-WA0079.webp", "/images/webp/IMG-20250901-WA0085.webp", "/images/webp/IMG-20250901-WA0089.webp", "/images/webp/IMG-20250901-WA0096.webp", "/images/webp/IMG-20250901-WA0035.webp", "/images/webp/IMG-20250901-WA0049.webp", "/images/webp/IMG-20250901-WA0063.webp"]
+    images: ["/images/webp/gaming.webp", "/images/webp/IMG-20250901-WA0041.webp", "/images/webp/IMG-20250901-WA0071.webp", "/images/webp/IMG-20250901-WA0075.webp", "/images/webp/IMG-20250901-WA0079.webp", "/images/webp/IMG-20250901-WA0085.webp", "/images/webp/IMG-20250901-WA0089.webp", "/images/webp/IMG-20250901-WA0096.webp", "/images/webp/IMG-20250901-WA0067.webp", "/images/webp/IMG-20250901-WA0049.webp", "/images/webp/IMG-20250901-WA0063.webp"]
     description: "Procesadores, placas de video y más para equipos gamer"
     brands: ["NVIDIA", "AMD", "Ryzen", "Intel", "Corsair"]
 
