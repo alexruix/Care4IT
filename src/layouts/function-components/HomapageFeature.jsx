@@ -8,7 +8,6 @@ const HomapageFeature = ({ feature_list = [] }) => {
         mt-10 grid grid-cols-1 gap-6
         sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3
       "
-      role="list"
       aria-label="Soluciones de seguridad física e informática"
     >
       {feature_list.map((item, i) => {
@@ -18,7 +17,6 @@ const HomapageFeature = ({ feature_list = [] }) => {
         return (
           <article
             key={i}
-            role="listitem"
             className="
               group flex flex-col rounded-xl bg-white
               border border-slate-200 shadow-sm

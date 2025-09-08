@@ -53,7 +53,7 @@ items:
 
   - title: Accesorios
     key: "accesorios"
-    images: ["/images/webp/accesorios.webp", "/images/webp/IMG-20250901-WA0066.webp", "/images/webp/IMG-20250901-WA0073.webp", "/images/webp/webcam.webp", "/images/webp/IMG-20250901-WA0099.webp", "/images/webp/tvstick.webp", "/images/webp/IMG-20250901-WA0088.webp", "/images/webp/IMG-20250901-WA0016.webp" ]
+    images: ["/images/webp/accesorios.webp", "/images/webp/IMG-20250901-WA0066.webp", "/images/webp/IMG-20250901-WA0073.webp", "/images/webp/webcam.webp", "/images/webp/IMG-20250901-WA0099.webp", "/images/webp/tvstick.webp", "/images/webp/IMG-20250901-WA0088.webp" ]
     description: "Cables, joysticks, adaptadores, soportes y otros insumos que complementan tu equipo"
     brands: ["Seisa", "Motorola", "Raptor"]
 ---
