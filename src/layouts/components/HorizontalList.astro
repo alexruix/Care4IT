@@ -61,6 +61,9 @@ const whatsAppLink = `${whatsAppBase}?text=${whatsAppMsg}`;
             <div
               id={carouselId}
               class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar"
+              tabindex="0"
+              role="region"
+              aria-label="Galería de imágenes"
               style="scrollbar-width:none;-ms-overflow-style:none;"
             >
               {imgs.map((src, k) => (
